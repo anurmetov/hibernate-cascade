@@ -8,29 +8,14 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-public class SmileDaoImpl extends AbstractDao implements SmileDao {
+public class SmileDaoImpl extends AbstractDao<Smile> implements SmileDao {
     public SmileDaoImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
 
     @Override
     public Smile create(Smile entity) {
-        Transaction transaction = null;
-        Session session = null;
-        try {
-            session = HibernateUtil.getSessionFactory().openSession();
-            transaction = session.getTransaction();
-            transaction.begin();
-            session.persist(entity);
-            transaction.commit();
-            return entity;
-        } catch (Exception e) {
-            throw new RuntimeException("Can not add a entity to DB.", e);
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
+        create(entity);
     }
 
     @Override

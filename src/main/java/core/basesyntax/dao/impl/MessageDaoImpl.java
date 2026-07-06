@@ -5,7 +5,7 @@ import core.basesyntax.model.Message;
 import java.util.List;
 import org.hibernate.SessionFactory;
 
-public class MessageDaoImpl extends AbstractDao implements MessageDao {
+public class MessageDaoImpl extends AbstractDao<Message> implements MessageDao {
     public MessageDaoImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
