@@ -12,7 +12,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Override
     public User create(User entity) {
-        return null;
+        return super.create(entity);
     }
 
     @Override
@@ -27,6 +27,6 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Override
     public void remove(User entity) {
-
+        super.remove(entity);
     }
 }

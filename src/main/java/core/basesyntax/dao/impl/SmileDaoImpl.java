@@ -15,7 +15,7 @@ public class SmileDaoImpl extends AbstractDao<Smile> implements SmileDao {
 
     @Override
     public Smile create(Smile entity) {
-        create(entity);
+        return super.create(entity);
     }
 
     @Override

@@ -31,14 +31,6 @@ public class CommentDaoImpl extends AbstractDao<Comment> implements CommentDao {
 
     @Override
     public void remove(Comment entity) {
-        Transaction transaction;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.getTransaction();
-            transaction.begin();
-            session.remove(entity);
-            transaction.commit();
-        } catch (Exception e) {
-            throw new RuntimeException("Can not remove a entity from a DB.", e);
-        }
+        super.remove(entity);
     }
 }

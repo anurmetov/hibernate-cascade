@@ -50,4 +50,6 @@ public abstract class AbstractDao<T> {
         }
     }
 
+    // TODO: Создать методы get и getAll. Выполнить 2 и 3 пункт readme
+
 }

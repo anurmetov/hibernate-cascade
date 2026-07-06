@@ -12,7 +12,7 @@ public class MessageDaoImpl extends AbstractDao<Message> implements MessageDao {
 
     @Override
     public Message create(Message entity) {
-        return null;
+        return super.create(entity);
     }
 
     @Override
@@ -27,6 +27,6 @@ public class MessageDaoImpl extends AbstractDao<Message> implements MessageDao {
 
     @Override
     public void remove(Message entity) {
-
+        super.remove(entity);
     }
 }
