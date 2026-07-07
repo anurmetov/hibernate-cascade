@@ -6,14 +6,14 @@ import core.basesyntax.model.Message;
 import core.basesyntax.model.MessageDetails;
 import org.hibernate.SessionFactory;
 
-public class MessageDetailsDaoImpl extends AbstractDao<MessageDetails> implements MessageDetailsDao {
+public class MessageDetailsDaoImpl extends AbstractDao implements MessageDetailsDao {
     public MessageDetailsDaoImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
 
     @Override
     public MessageDetails create(MessageDetails entity) {
-       return super.create(entity);
+       return null;
     }
 
     @Override
@@ -21,8 +21,5 @@ public class MessageDetailsDaoImpl extends AbstractDao<MessageDetails> implement
         return null;
     }
 
-    @Override
-    protected Class<MessageDetails> getEntityClass() {
-        return MessageDetails.class;
-    }
+
 }

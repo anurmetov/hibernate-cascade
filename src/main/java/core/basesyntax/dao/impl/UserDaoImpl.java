@@ -6,14 +6,14 @@ import core.basesyntax.model.User;
 import java.util.List;
 import org.hibernate.SessionFactory;
 
-public class UserDaoImpl extends AbstractDao<User> implements UserDao {
+public class UserDaoImpl extends AbstractDao implements UserDao {
     public UserDaoImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
 
     @Override
     public User create(User entity) {
-        return super.create(entity);
+        return null;
     }
 
     @Override
@@ -28,11 +28,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Override
     public void remove(User entity) {
-        super.remove(entity);
+
     }
 
-    @Override
-    protected Class<User> getEntityClass() {
-        return User.class;
-    }
 }
