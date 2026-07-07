@@ -1,8 +1,6 @@
 package core.basesyntax.dao.impl;
 
 import core.basesyntax.dao.MessageDetailsDao;
-import core.basesyntax.model.Comment;
-import core.basesyntax.model.Message;
 import core.basesyntax.model.MessageDetails;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -39,7 +37,7 @@ public class MessageDetailsDaoImpl extends AbstractDao implements MessageDetails
     @Override
     public MessageDetails get(Long id) {
         Transaction transaction = null;
-        try(Session session = factory.openSession()) {
+        try (Session session = factory.openSession()) {
             transaction = session.getTransaction();
             transaction.begin();
             MessageDetails foundedEntity = session.find(MessageDetails.class, id);
@@ -53,6 +51,4 @@ public class MessageDetailsDaoImpl extends AbstractDao implements MessageDetails
                     + " to a DB. ", e);
         }
     }
-
-
 }

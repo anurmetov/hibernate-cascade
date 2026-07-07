@@ -4,7 +4,7 @@ import core.basesyntax.dao.UserDao;
 import core.basesyntax.model.Message;
 import core.basesyntax.model.User;
 import java.util.List;
-
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -40,10 +40,11 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     @Override
     public User get(Long id) {
         Transaction transaction = null;
-        try(Session session = factory.openSession()) {
+        try (Session session = factory.openSession()) {
             transaction = session.getTransaction();
             transaction.begin();
             User foundedEntity = session.find(User.class, id);
+            Hibernate.initialize(foundedEntity.getComments());
             transaction.commit();
             return foundedEntity;
         } catch (Exception e) {
@@ -92,7 +93,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             }
             throw new RuntimeException("Can not delete " + User.class.getSimpleName()
                     + " from a DB.", e);
-        };
+        }
     }
-
 }

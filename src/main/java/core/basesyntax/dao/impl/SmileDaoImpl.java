@@ -1,8 +1,6 @@
 package core.basesyntax.dao.impl;
 
-import core.basesyntax.HibernateUtil;
 import core.basesyntax.dao.SmileDao;
-import core.basesyntax.model.Comment;
 import core.basesyntax.model.Smile;
 import java.util.List;
 import org.hibernate.Session;
@@ -41,7 +39,7 @@ public class SmileDaoImpl extends AbstractDao implements SmileDao {
     @Override
     public Smile get(Long id) {
         Transaction transaction = null;
-        try(Session session = factory.openSession()) {
+        try (Session session = factory.openSession()) {
             transaction = session.getTransaction();
             transaction.begin();
             Smile foundedEntity = session.find(Smile.class, id);

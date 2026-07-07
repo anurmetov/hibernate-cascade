@@ -1,11 +1,8 @@
 package core.basesyntax.dao.impl;
 
 import core.basesyntax.dao.MessageDao;
-import core.basesyntax.model.Comment;
 import core.basesyntax.model.Message;
 import java.util.List;
-
-import core.basesyntax.model.MessageDetails;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -41,7 +38,7 @@ public class MessageDaoImpl extends AbstractDao implements MessageDao {
     @Override
     public Message get(Long id) {
         Transaction transaction = null;
-        try(Session session = factory.openSession()) {
+        try (Session session = factory.openSession()) {
             transaction = session.getTransaction();
             transaction.begin();
             Message foundedEntity = session.find(Message.class, id);
@@ -93,8 +90,6 @@ public class MessageDaoImpl extends AbstractDao implements MessageDao {
             }
             throw new RuntimeException("Can not delete " + Message.class.getSimpleName()
                     + " from a DB.", e);
-        };
+        }
     }
-
-
 }

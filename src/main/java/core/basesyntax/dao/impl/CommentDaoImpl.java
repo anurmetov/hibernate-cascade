@@ -38,7 +38,7 @@ public class CommentDaoImpl extends AbstractDao implements CommentDao {
     @Override
     public Comment get(Long id) {
         Transaction transaction = null;
-        try(Session session = factory.openSession()) {
+        try (Session session = factory.openSession()) {
             transaction = session.getTransaction();
             transaction.begin();
             Comment foundedEntity = session.find(Comment.class, id);
@@ -90,7 +90,7 @@ public class CommentDaoImpl extends AbstractDao implements CommentDao {
             }
             throw new RuntimeException("Can not delete " + Comment.class.getSimpleName()
                     + " from a DB.", e);
-        };
+        }
     }
 
 }
