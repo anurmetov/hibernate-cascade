@@ -1,6 +1,7 @@
 package core.basesyntax.dao.impl;
 
 import core.basesyntax.dao.MessageDao;
+import core.basesyntax.model.Comment;
 import core.basesyntax.model.Message;
 import java.util.List;
 import org.hibernate.SessionFactory;
@@ -28,5 +29,10 @@ public class MessageDaoImpl extends AbstractDao<Message> implements MessageDao {
     @Override
     public void remove(Message entity) {
         super.remove(entity);
+    }
+
+    @Override
+    protected Class<Message> getEntityClass() {
+        return Message.class;
     }
 }
