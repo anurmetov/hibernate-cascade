@@ -1,28 +1,38 @@
 package core.basesyntax;
 
 import core.basesyntax.dao.CommentDao;
+import core.basesyntax.dao.MessageDao;
 import core.basesyntax.dao.SmileDao;
 import core.basesyntax.dao.impl.CommentDaoImpl;
+import core.basesyntax.dao.impl.MessageDaoImpl;
 import core.basesyntax.dao.impl.SmileDaoImpl;
 import core.basesyntax.model.Comment;
+import core.basesyntax.model.Message;
+import core.basesyntax.model.MessageDetails;
 import core.basesyntax.model.Smile;
 import org.hibernate.SessionFactory;
+
+import java.time.LocalDateTime;
 
 public class Main {
     public static void main(String[] args) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
-        Smile smile = new Smile();
-        smile.setValue("HAHA");
-        SmileDao smileDao = new SmileDaoImpl(sessionFactory);
-        smileDao.create(smile);
+        MessageDetails messageDetails = new MessageDetails();
+        messageDetails.setSender("Artem");
+        messageDetails.setSentTime(LocalDateTime.now());
 
-        Comment comment = new Comment();
-        comment.setContent("Hello");
+        Message message = new Message();
+        message.setContent("Comment1");
+        message.setMessageDetails(messageDetails);
 
-        CommentDao commentDao = new CommentDaoImpl(sessionFactory);
-        commentDao.create(comment);
-        commentDao.remove(comment);
+
+
+        MessageDao messageDao = new MessageDaoImpl(sessionFactory);
+        messageDao.create(message);
+        messageDao.remove(message);
+
+
 
 
 
