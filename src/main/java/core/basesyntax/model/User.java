@@ -1,5 +1,6 @@
 package core.basesyntax.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,7 +15,7 @@ public class User {
     private Long id;
     private String username;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Comment> comments;
 
     public Long getId() {

@@ -5,6 +5,7 @@ import core.basesyntax.model.Comment;
 import core.basesyntax.model.Message;
 import java.util.List;
 
+import core.basesyntax.model.MessageDetails;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -39,12 +40,43 @@ public class MessageDaoImpl extends AbstractDao implements MessageDao {
 
     @Override
     public Message get(Long id) {
-        return null;
+        Transaction transaction = null;
+        try(Session session = factory.openSession()) {
+            transaction = session.getTransaction();
+            transaction.begin();
+            Message foundedEntity = session.find(Message.class, id);
+            transaction.commit();
+            return foundedEntity;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new RuntimeException("Can not get a " + Message.class.getSimpleName()
+                    + " to a DB. ", e);
+        }
     }
 
     @Override
     public List<Message> getAll() {
-        return null;
+        Transaction transaction = null;
+        try (Session session = factory.openSession()) {
+            transaction = session.getTransaction();
+            transaction.begin();
+            List<Message> allFoundedEntities =
+                    session.createQuery("FROM " + Message.class.getName(), Message.class)
+                            .getResultList();
+
+            transaction.commit();
+            return allFoundedEntities;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+
+            throw new RuntimeException("Can not get a " + Message.class.getSimpleName()
+                    + " to a DB. ", e);
+
+        }
     }
 
     @Override
@@ -59,7 +91,7 @@ public class MessageDaoImpl extends AbstractDao implements MessageDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can not delete " + Comment.class.getSimpleName()
+            throw new RuntimeException("Can not delete " + Message.class.getSimpleName()
                     + " from a DB.", e);
         };
     }
